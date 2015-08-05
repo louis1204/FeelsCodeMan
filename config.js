@@ -26,7 +26,7 @@ config = {
 
   // Production (Heroku)
   production: {
-    url: 'louisuuu.herokuapp.com/blog',
+    url: 'https://louisuuu.herokuapp.com/blog',
     mail: {
       transport: 'SMTP',
       options: {

@@ -26,7 +26,7 @@ config = {
 
   // Production (Heroku)
   production: {
-    url: process.env.HEROKU_URL,
+    url: process.env.HEROKU_URL + '/blog',
     mail: {
       transport: 'SMTP',
       options: {
@@ -41,7 +41,7 @@ config = {
     storage: storage,
     database: {
       client: 'postgres',
-      connection: process.env.DATABASE_URL + '/blog',
+      connection: process.env.DATABASE_URL,
       debug: false
     },
     server: {

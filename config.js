@@ -41,7 +41,7 @@ config = {
     storage: storage,
     database: {
       client: 'postgres',
-      connection: process.env.DATABASE_URL,
+      connection: process.env.DATABASE_URL + '/blog',
       debug: false
     },
     server: {
@@ -49,7 +49,7 @@ config = {
       port: process.env.PORT
     },
     paths: {
-      contentPath: path.join(__dirname, '/content/')
+      contentPath: path.join(__dirname, 'blog/content/')
     }
   },
 
@@ -68,7 +68,7 @@ config = {
       port: '2368'
     },
     paths: {
-      contentPath: path.join(__dirname, '/content/')
+      contentPath: path.join(__dirname, 'blog/content/')
     }
   }
 

@@ -12,13 +12,42 @@ ghost({
   config: path.join(__dirname, 'config.js')
 }).then(function (ghostServer) {
   ghostServer.start();
+  ghostServer.get('/site', function (req, res) {
+    var buffer = fs.readFileSync('client/index.html');
+    var html = buffer.toString('utf-8');
+    res.send(html);
+  });
 });
 
-app.get('/site', function (req, res) {
-  var buffer = fs.readFileSync('client/index.html');
-  var html = buffer.toString('utf-8');
-  res.send(html);
+var watcher = chokidar.watch('gallery', {ignored: /[\/\\]\./, persistent: true});
+
+fileStatusSocket.on('connection', function(conn) {
+
+	['add', 'addDir', 'change', 'unlink', 'unlinkDir'].forEach(function(eventType){
+		watcher.on(eventType, function(path){
+			setTimeout(function(){
+				conn.write(JSON.stringify({ type : eventType, path : "/" + path}));
+			},500);
+		});
+	});
+
+	fs.readdir('gallery', function(err, files){
+			if (!err){
+				var initialFiles = files.filter(function(filename){
+					return !(filename.match(/^\./));
+				});
+				initialFiles.forEach(function(filename){
+					conn.write(JSON.stringify({ type : 'add', path : "/gallery/" + filename}));
+				});
+			}
+	});
+
+    conn.on('data', function(message) {});
+    conn.on('close', function() {});
 });
+
+
+fileStatusSocket.installHandlers(server, {prefix:'/filestatus'});
 
 app.get('/thumbs/gallery/*', function(req, res, next) {
 	var src_path = __dirname + '/gallery/' + req.params[0];
@@ -42,12 +71,3 @@ app.get('/thumbs/gallery/*', function(req, res, next) {
 });
 
 app.use("/gallery",  express.static(__dirname + '/gallery'));
-
-
-
-server.listen(process.env.PORT || 8000);
-if (process.env.PORT) {
-  console.log('Listening on localhost:' + process.env.PORT);
-} else {
-  console.log('Listening on localhost:8000');
-}

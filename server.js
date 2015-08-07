@@ -14,36 +14,6 @@ ghost({
   ghostServer.start();
 });
 
-var watcher = chokidar.watch('gallery', {ignored: /[\/\\]\./, persistent: true});
-
-fileStatusSocket.on('connection', function(conn) {
-
-	['add', 'addDir', 'change', 'unlink', 'unlinkDir'].forEach(function(eventType){
-		watcher.on(eventType, function(path){
-			setTimeout(function(){
-				conn.write(JSON.stringify({ type : eventType, path : "/" + path}));
-			},500);
-		});
-	});
-
-	fs.readdir('gallery', function(err, files){
-			if (!err){
-				var initialFiles = files.filter(function(filename){
-					return !(filename.match(/^\./));
-				});
-				initialFiles.forEach(function(filename){
-					conn.write(JSON.stringify({ type : 'add', path : "/gallery/" + filename}));
-				});
-			}
-	});
-
-    conn.on('data', function(message) {});
-    conn.on('close', function() {});
-});
-
-
-fileStatusSocket.installHandlers(server, {prefix:'/filestatus'});
-
 app.get('/site', function (req, res) {
   var buffer = fs.readFileSync('client/index.html');
   var html = buffer.toString('utf-8');

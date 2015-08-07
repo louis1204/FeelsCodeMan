@@ -49,7 +49,7 @@ config = {
       port: process.env.PORT
     },
     paths: {
-      contentPath: path.join(__dirname, '/blog/content/')
+      contentPath: path.join(__dirname, '/content/')
     }
   },
 
@@ -68,7 +68,7 @@ config = {
       port: '2368'
     },
     paths: {
-      contentPath: path.join(__dirname, '/blog/content/')
+      contentPath: path.join(__dirname, '/content/')
     }
   }
 

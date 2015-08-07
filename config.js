@@ -26,7 +26,7 @@ config = {
 
   // Production (Heroku)
   production: {
-    url: 'http://louisuuu.herokuapp.com/blog',
+    url: process.env.HEROKU_URL,
     mail: {
       transport: 'SMTP',
       options: {
@@ -49,13 +49,13 @@ config = {
       port: process.env.PORT
     },
     paths: {
-      contentPath: path.join(__dirname, 'blog/content/')
+      contentPath: path.join(__dirname, '/content/')
     }
   },
 
   // Development
   development: {
-    url: 'http://localhost:2368/blog',
+    url: 'http://localhost:2368',
     database: {
       client: 'sqlite3',
       connection: {
@@ -68,7 +68,7 @@ config = {
       port: '2368'
     },
     paths: {
-      contentPath: path.join(__dirname, 'blog/content/')
+      contentPath: path.join(__dirname, '/content/')
     }
   }
 

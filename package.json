@@ -12,7 +12,11 @@
   "dependencies": {
     "ghost": "0.6.4",
     "ghost-s3-storage": "~0.2.1",
-    "pg": "latest"
+    "pg": "latest",
+    "rbytes": "~1.0.0",
+    "sockjs": "~0.3.8",
+    "express": "~3.4.7",
+    "chokidar": "~0.8.1"
   },
   "engines": {
     "node": "~0.10.0"

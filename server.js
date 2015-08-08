@@ -11,7 +11,7 @@ fs = require('fs');
 ghost({
   config: path.join(__dirname, 'config.js')
 }).then(function (ghostServer) {
-  ghostServer.start();
+  ghostServer.start(app);
 });
 
 // var watcher = chokidar.watch('gallery', {ignored: /[\/\\]\./, persistent: true});
@@ -77,9 +77,9 @@ app.use("/gallery",  express.static(__dirname + '/gallery'));
 
 
 
-server.listen(process.env.PORT || 8000);
-if (process.env.PORT) {
-  console.log('Listening on localhost:' + process.env.PORT);
-} else {
-  console.log('Listening on localhost:8000');
-}
+// server.listen(process.env.PORT || 8000);
+// if (process.env.PORT) {
+//   console.log('Listening on localhost:' + process.env.PORT);
+// } else {
+//   console.log('Listening on localhost:8000');
+// }

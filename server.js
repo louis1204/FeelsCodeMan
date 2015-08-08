@@ -8,35 +8,43 @@ fileStatusSocket = sockjs.createServer({}),
 chokidar = require('chokidar'),
 fs = require('fs');
 
-var watcher = chokidar.watch('gallery', {ignored: /[\/\\]\./, persistent: true});
-
-fileStatusSocket.on('connection', function(conn) {
-
-	['add', 'addDir', 'change', 'unlink', 'unlinkDir'].forEach(function(eventType){
-		watcher.on(eventType, function(path){
-			setTimeout(function(){
-				conn.write(JSON.stringify({ type : eventType, path : "/" + path}));
-			},500);
-		});
-	});
-
-	fs.readdir('gallery', function(err, files){
-			if (!err){
-				var initialFiles = files.filter(function(filename){
-					return !(filename.match(/^\./));
-				});
-				initialFiles.forEach(function(filename){
-					conn.write(JSON.stringify({ type : 'add', path : "/gallery/" + filename}));
-				});
-			}
-	});
-
-    conn.on('data', function(message) {});
-    conn.on('close', function() {});
+ghost({
+  config: path.join(__dirname, 'config.js')
+}).then(function (ghostServer) {
+  ghostServer.start();
 });
 
+// var watcher = chokidar.watch('gallery', {ignored: /[\/\\]\./, persistent: true});
+//
+// fileStatusSocket.on('connection', function(conn) {
+//
+// 	['add', 'addDir', 'change', 'unlink', 'unlinkDir'].forEach(function(eventType){
+// 		watcher.on(eventType, function(path){
+// 			setTimeout(function(){
+// 				conn.write(JSON.stringify({ type : eventType, path : "/" + path}));
+// 			},500);
+// 		});
+// 	});
+//
+// 	fs.readdir('gallery', function(err, files){
+// 			if (!err){
+// 				var initialFiles = files.filter(function(filename){
+// 					return !(filename.match(/^\./));
+// 				});
+// 				initialFiles.forEach(function(filename){
+// 					conn.write(JSON.stringify({ type : 'add', path : "/gallery/" + filename}));
+// 				});
+// 			}
+// 	});
+//
+//     conn.on('data', function(message) {});
+//     conn.on('close', function() {});
+// });
+//
+//
+// fileStatusSocket.installHandlers(server, {prefix:'/filestatus'});
 
-fileStatusSocket.installHandlers(server, {prefix:'/filestatus'});
+app.use(express.static(__dirname+'/client'));
 
 app.get('/site', function (req, res) {
   var buffer = fs.readFileSync('client/index.html');
@@ -66,17 +74,12 @@ app.get('/thumbs/gallery/*', function(req, res, next) {
 });
 
 app.use("/gallery",  express.static(__dirname + '/gallery'));
-ghost({
-  config: path.join(__dirname, 'config.js')
-}).then(function (ghostServer) {
-  ghostServer.start(app);
-});
-//
-//
-//
-// server.listen(process.env.PORT || 8000);
-// if (process.env.PORT) {
-//   console.log('Listening on localhost:' + process.env.PORT);
-// } else {
-//   console.log('Listening on localhost:8000');
-// }
+
+
+
+server.listen(process.env.PORT || 8000);
+if (process.env.PORT) {
+  console.log('Listening on localhost:' + process.env.PORT);
+} else {
+  console.log('Listening on localhost:8000');
+}

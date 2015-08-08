@@ -47,7 +47,7 @@ ghost({
 app.use(express.static(__dirname+'/client'));
 
 app.get('/site', function (req, res) {
-  var buffer = fs.readFileSync('client/index.html');
+  var buffer = fs.readFileSync('client/site.html');
   var html = buffer.toString('utf-8');
   res.send(html);
 });

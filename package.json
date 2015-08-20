@@ -1,27 +1,22 @@
 {
-  "name": "ghost-on-heroku",
-  "description": "Just a blogging platform on Heroku.",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/cobyism/ghost-on-heroku.git"
+  "name": "ReactGallery",
+  "version": "0.0.1",
+  "description": "Simple Image Gallery usign soksjs and reactjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
   },
-  "bugs": "https://github.com/TryGhost/Ghost/issues",
-  "private": true,
-  "version": "0.6.4",
   "dependencies": {
-    "ghost": "0.6.4",
-    "ghost-s3-storage": "~0.2.1",
-    "pg": "latest",
     "rbytes": "~1.0.0",
     "sockjs": "~0.3.8",
     "express": "~3.4.7",
-    "chokidar": "~0.8.1"
+    "chokidar": "~0.8.1",
   },
   "engines": {
-    "node": "~0.10.0"
+    "node": "~0.10.0",
+    "npm": "2.13.3"
   },
-  "scripts": {
-    "start": "node server.js"
-  }
+  "devDependencies": {},
+  "author": "Louis Wong <louis1204@gmail.com>",
+  "license": "MIT"
 }

@@ -59,7 +59,8 @@
 
 	Photos = React.createClass({
 		getInitialState: function(){
-			var sock = new SockJS('https://' + window.location.hostname + ':8000/filestatus');
+			var port = process.env.PORT || '8000';
+			var sock = new SockJS('https://' + window.location.hostname + ':' + port + '/filestatus');
 			var images = {};
 			var updateGallery = function(message){
 				if (message.type === 'add'){

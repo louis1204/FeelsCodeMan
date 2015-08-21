@@ -1,7 +1,6 @@
 var express = require("express"),
 	app = express(),
 	server = require('http').createServer(app),
-	chokidar = require('chokidar'),
 	fs = require('fs'),
   path = require('path');
 

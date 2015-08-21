@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 (function($){
 
 	Footer = React.createClass({displayName: 'Footer',

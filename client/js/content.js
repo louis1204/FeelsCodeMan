@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 (function($){
 
 	Content = React.createClass({displayName: 'Content',

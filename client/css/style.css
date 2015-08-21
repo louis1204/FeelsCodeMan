@@ -256,8 +256,8 @@ img.grayscale {
 	-moz-transition: 0.2s ease-in-out;
 	-o-transition: 0.2s ease-in-out;
 	transition: 0.2s ease-in-out;
-	padding-left: 24px;
-	padding-right: 24px;
+	padding-left: 8px;
+	padding-right: 8px;
 	padding-bottom: 24px;
 }
 

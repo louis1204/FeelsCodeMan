@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 (function($){
 
 	var Divider = React.createClass({displayName: 'Code',

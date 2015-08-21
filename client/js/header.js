@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 (function($) {
 	Header = React.createClass({displayName: 'Header',
 		getInitialState: function() {

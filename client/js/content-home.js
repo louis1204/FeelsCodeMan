@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 (function($){
 
 	Home = React.createClass({displayName: 'Home',

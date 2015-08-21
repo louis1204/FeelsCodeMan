@@ -59,7 +59,14 @@
 
 	Photos = React.createClass({
 		getInitialState: function(){
-			var sock = new SockJS('https://' + window.location.hostname + ':12548/filestatus');
+			var host = location.origin.replace(/^http/, 'sockjs')
+var sock = new WebSocket(host);
+// ws.onmessage = function (event) {
+//   var li = document.createElement('li');
+//   li.innerHTML = JSON.parse(event.data);
+//   document.querySelector('#pings').appendChild(li);
+// };
+// 			var sock = new SockJS('https://' + window.location.hostname + ':8000/filestatus');
 			var images = {};
 			var updateGallery = function(message){
 				if (message.type === 'add'){

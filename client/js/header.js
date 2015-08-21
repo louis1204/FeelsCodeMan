@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 (function($) {
 	Header = React.createClass({displayName: 'Header',
 		getInitialState: function() {
@@ -45,7 +44,7 @@
 							Hi, I&#8217;m Louis
 						</h1>
 						<h1 className={'header-title ' + hide}>
-							Software Developer
+							The compiler whisperer
 						</h1>
 						<div className={'header-social ' + hide}>
 							<a className={'social-icon fa fa-linkedin fa-2x'}
@@ -72,14 +71,6 @@
 							<a className={codeClass}
 									onClick={this.props.onSectionClick.bind(null, 1)}>
 								Code
-							</a> |
-							<a className={photosClass}
-									onClick={this.props.onSectionClick.bind(null, 2)}>
-								Photos
-							</a> |
-							<a className={artClass}
-									onClick={this.props.onSectionClick.bind(null, 3)}>
-								Art
 							</a>
 						</h2>
 					</div>

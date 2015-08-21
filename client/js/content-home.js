@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 (function($){
 
 	Home = React.createClass({displayName: 'Home',
@@ -9,7 +8,7 @@
 						What I do
 					</h2>
 					<p className={'home-content'}>
-						I type code to send to my CPU to accomplish tasks - a programmer.
+						I like to build things with code.
 						I&#8217;m good with java, javascript, html, css, jquery, nodejs,
 						apache, mysql, mongodb, angularjs, reactjs.
 						I&#8217;ve worked with the LAMP and MEAN stack and have an affinity

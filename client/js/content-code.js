@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 (function($){
 
 	var Divider = React.createClass({displayName: 'Code',
@@ -100,7 +99,7 @@
 					</div>
 					<div className={'code-content'}>
 						<p>
-							Built with reactjs, nodejs server setup with nodejs, hosted on Heroku.
+							Built with reactjs, nodejs, expressjs, and hosted on Heroku.
 						</p>
 					</div>
 				</div>

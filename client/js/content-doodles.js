@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 (function($){
 
 	var GalleryImage = React.createClass({

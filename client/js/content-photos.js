@@ -59,7 +59,7 @@
 
 	Photos = React.createClass({
 		getInitialState: function(){
-			var host = location.origin.replace(/^http/, 'sockjs')
+			var host = location.origin.replace(/^http/, 'ws')
 var sock = new WebSocket(host);
 // ws.onmessage = function (event) {
 //   var li = document.createElement('li');
